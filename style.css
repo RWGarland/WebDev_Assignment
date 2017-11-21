@@ -4,3 +4,36 @@ h1	{
     font-size: 45px;
     line-height: 50px;
 }
+
+section {
+    display: none;
+}
+
+@media (min-width: 40em) 
+				{
+				.banner { padding: 1.5em 3em 1.5em 3em; }
+         .menu { padding: 1em 3em 1em 3em; }
+         article { padding: 2em; }
+		
+		   main {
+         float: left;
+         width: 65%;
+         margin-right: 3%;
+         border-right: 1px solid #FFF;
+         }	
+		 aside {
+         float: left;
+         width: 30%;
+         margin-bottom: 1em;
+         }
+		  .menu li {
+         display: inline;
+         margin: 0 1em 0 0;
+         }
+		 /* Menu navigation - inline layout for wider screens */
+         .menu a {
+         display: inline;
+         padding: 0;
+         border-bottom: 0;
+         }
+		 

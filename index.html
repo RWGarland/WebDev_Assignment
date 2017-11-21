@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    <body>
+    <div id="wrapper">
             <head>
 
                 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -12,14 +12,24 @@
 
             </head>
 <fieldset>
-                 <header>
+        
                      <form>
                         <h1>V&A API documentation</h1>
                      <label for="search">Search V&A</label>
-                        <input type="text"  id="search" required />
+                        <input type="text"  id="submit" required />
                      <input type="submit" value="Search">
+                        
                      </form>
-                </header>
+                
 </fieldset>
-    </body>
+        <section class="loading">
+                <img src="Images/91.gif"/>
+        </section>
+        <section class="success">
+            <header>Success</header>
+        </section>
+        <section class="error">
+            <header>Error</header>
+        </section>
+    </div>
 </html>

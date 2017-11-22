@@ -1,35 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>V&A API documentation</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href='http://fonts.googleapis.com/css?family=Strait' rel='stylesheet' type='text/css'>
+        <link href="css/style.css" rel="stylesheet" type="text/css">
+        <script src="script.js"></script>
+
+    </head>
     <div id="wrapper">
-            <head>
+        <h1>V&A API documentation</h1>
+        <section class="searchva">
 
-                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-                <title>V&A API documentation</title>
-                <meta name="viewport" content="width=device-width, initial-scale=1">
-                <link href='http://fonts.googleapis.com/css?family=Strait' rel='stylesheet' type='text/css'>
-                <link href="css/style.css" rel="stylesheet" type="text/css">
-                <script src="script.js"></script>
+                <form id="send">
+                    <fieldset>
+                         <label for="search">Search V&A</label>
+                             <input type="text" id="search" required />
+                             <button id="submit">Search</button>
+          <!--// how it was done before button
+    <input type="text"  id="submit" required />
+                         <input type="submit" value="Search">
+                            -->
+                    </fieldset>
+                </form>
 
-            </head>
-<fieldset>
-        
-                     <form>
-                        <h1>V&A API documentation</h1>
-                     <label for="search">Search V&A</label>
-                        <input type="text"  id="submit" required />
-                     <input type="submit" value="Search">
-                        
-                     </form>
-                
-</fieldset>
+            </section>
         <section class="loading">
                 <img src="Images/91.gif"/>
         </section>
+
         <section class="success">
             <header>Success</header>
         </section>
+
         <section class="error">
             <header>Error</header>
         </section>
+
+        <p id="result"></p>
     </div>
 </html>

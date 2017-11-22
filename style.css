@@ -5,8 +5,18 @@ h1	{
     line-height: 50px;
 }
 
-section {
-    display: none;
+.loading {
+	text-align: left;
+}
+
+.success {
+	margin: auto;
+	text-align: left;
+}
+
+.error {
+	margin: auto;
+	text-align: left;
 }
 
 @media (min-width: 40em) 

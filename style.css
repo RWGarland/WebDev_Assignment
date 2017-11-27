@@ -9,14 +9,13 @@ h1	{
 	text-align: left;
 }
 
-.success {
-	margin: auto;
-	text-align: left;
-}
-
-.error {
-	margin: auto;
-	text-align: left;
+#wrapper {
+	max-width: 1000px;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: #727575;
+  padding-right: 10px;
+  padding-left: 10px;
 }
 
 @media (min-width: 40em) 
@@ -25,17 +24,12 @@ h1	{
          .menu { padding: 1em 3em 1em 3em; }
          article { padding: 2em; }
 		
-		   main {
+        main {
          float: left;
          width: 65%;
          margin-right: 3%;
          border-right: 1px solid #FFF;
          }	
-		 aside {
-         float: left;
-         width: 30%;
-         margin-bottom: 1em;
-         }
 		  .menu li {
          display: inline;
          margin: 0 1em 0 0;

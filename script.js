@@ -25,17 +25,12 @@ function getApi(evt){
     
         var xhr = new XMLHttpRequest();
           xhr.addEventListener("load", function(){
-             if(xhr.readyState ===4 && xhr.status===200)
+            if(xhr.readyState ===4 && xhr.status===200)
             {
-                console.dir(xhr)
                 console.log(xhr.responseText);
-                response = JSON.parse(xhr.responseText);
-                
-                console.log("total results: " + responce.meta.result_count);
-                console.log("");
-                
-                log();
-                show();
+                var json = JSON.parse(xhr.responseText);
+                console.log(json);
+                show(json);
             } 
           });
 
@@ -55,45 +50,102 @@ function getURL(){
     
     if(searchArray != 0){
 		for(var i = 0; i < searchArray.length; i++){
-			searchURL += searchArray[i] + "+";
+			searchURL += encodeURIComponent(searchArray[i]) + "+";
 		}
 		console.log(searchURL);
+
+        searchURL += "&images=1";
+        
 		return searchURL;		
 	}
 	return "http://www.vam.ac.uk/api/json/museumobject";
 }
 
-function log(){
+function print(){
+    
+    var resultsDiv = document.getElementById("result");
+    
 	var length = 15;
 	
 	for(var i = 0; i < length; i++){
 		
 		var r = document.createElement("div");
-		var rTitle = document.createElement("p");
-		var rDate = document.createElement("p");
+        var title = document.createTextNode("Title: " + response.records[i].fields.title);
+		var object = document.createTextNode("Object: " + response.records[i].fields.object);
+		var artist = document.createTextNode("Artist: " + response.records[i].fields.artist);
+		var date = document.createTextNode("Date: " + response.records[i].fields.date_text);
+		// var rTitle = document.createElement("p");
+		// var rDate = document.createElement("p");
+        
+        var img = document.createElement("img");
+        img.setAttribute("src", img_url);
+        
 		
-		rTitle.textContent = response.records[i].fields.title;
-		rDate.textContent = response.records[i].fields.date_text;
+		// rTitle.textContent = response.records[i].fields.title;
+		// rDate.textContent = response.records[i].fields.date_text;
 		
-		r.appendChild(rTitle);
-		r.appendChild(rDate);
+		r.appendChild(title);
+		r.appendChild(object);
+		r.appendChild(artist);
+		r.appendChild(date);
+        
 		
-		var t = document.querySelector("#results");
-		t.appendChild(r);
+        resultsDiv.appendChild(r);
+        
+        //var t = document.querySelector("#results");
+		//t.appendChild(r);
 		
 		
 		
-		
-		console.log("Result: " + (i+1));
-		console.log("Title: " + response.records[i].fields.title);
-		console.log("Object: " + response.records[i].fields.object);
-		console.log("Artist: " + response.records[i].fields.artist);
-		console.log("Date: " + response.records[i].fields.date_text);
-		console.log("");
 	}
 }
 
-function show(){
+
+
+function show(json){
     
+/*    var resultsDiv = document.getElementById("result");
+    
+    var length = 15;
+    
+    for(var i = 0; i < length; i++){
+        var newP = document.createElement("p");
+        newP.classList.add("fitPara");
+        var title = document.createTextNode("Title: " + response.records[i].fields.title);
+        var object = document.createTextNode("Object: " + response.records[i].fields.object);
+        var artist = document.createTextNode("Artist: " + response.records[i].fields.artist);
+        var date = document.createTextNode("Date: " + response.records[i].fields.date_text);
+        newP.appendChild(title);
+        newP.appendChild(object);
+        newP.appendChild(artist);
+        newP.appendChild(date);
+        resultDiv.appendChild(newP);
+    }
+    */
+    var i, obj;
+    
+	for(i = 0; i < json.records.length; i++){
+        
+        obj = json.records[i];
+        
+        var artist = obj.fields.artist;
+        var title = obj.fields.title;
+        var img = obj.fields.primary_image_id;
+
+        console.log(artist);
+        console.log(title);
+        console.log(img); // piece together image url
+        
+        
+        var img_url = "http://media.vam.ac.uk/media/thira/collection_images/"
+                    + img.substr(0, 6) + "/"
+                    + img + ".jpg";
+                    + img + "_jpg_ds.jpg";
+        
+      //   var img = document.createElement("img");
+      //img.setAttribute("src", img_url);
+        
+        console.log(img_url);
+	}
     
 }

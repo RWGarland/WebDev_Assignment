@@ -27,10 +27,11 @@ function getApi(evt){
           xhr.addEventListener("load", function(){
             if(xhr.readyState ===4 && xhr.status===200)
             {
-                console.log(xhr.responseText);
-                var json = JSON.parse(xhr.responseText);
-                console.log(json);
-                show(json);
+                // console.log(xhr.responseText);
+                response = JSON.parse(xhr.responseText);
+                // console.log(json);
+				print();
+                // show(json);
             } 
           });
 
@@ -45,16 +46,14 @@ function getURL(){
     var searched = document.querySelector("#submitBox");	
 	var searchURL = "http://www.vam.ac.uk/api/json/museumobject/search?q=";
 	var searchArray = searched.value.split(" ");
-	console.log("Search value: " + searched.value);
-	console.log(searchArray);
+	// console.log("Search value: " + searched.value);
+	// console.log(searchArray);
     
     if(searchArray != 0){
 		for(var i = 0; i < searchArray.length; i++){
-			searchURL += encodeURIComponent(searchArray[i]) + "+";
+			searchURL += searchArray[i] + "+";
 		}
-		console.log(searchURL);
-
-        searchURL += "&images=1";
+        // searchURL += "&images=1";
         
 		return searchURL;		
 	}
@@ -62,66 +61,37 @@ function getURL(){
 }
 
 function print(){
-    
-    var resultsDiv = document.getElementById("result");
-    
-	var length = 15;
-	
-	for(var i = 0; i < length; i++){
-		
-		var r = document.createElement("div");
-        var title = document.createTextNode("Title: " + response.records[i].fields.title);
-		var object = document.createTextNode("Object: " + response.records[i].fields.object);
-		var artist = document.createTextNode("Artist: " + response.records[i].fields.artist);
-		var date = document.createTextNode("Date: " + response.records[i].fields.date_text);
-		// var rTitle = document.createElement("p");
-		// var rDate = document.createElement("p");
-        
-        var img = document.createElement("img");
-        img.setAttribute("src", img_url);
-        
-		
-		// rTitle.textContent = response.records[i].fields.title;
-		// rDate.textContent = response.records[i].fields.date_text;
-		
-		r.appendChild(title);
-		r.appendChild(object);
-		r.appendChild(artist);
-		r.appendChild(date);
-        
-		
-        resultsDiv.appendChild(r);
-        
-        //var t = document.querySelector("#results");
-		//t.appendChild(r);
-		
-		
-		
-	}
-}
 
-
-
-function show(json){
-    
-/*    var resultsDiv = document.getElementById("result");
+		var resultsDiv = document.getElementById("results");
+		resultsDiv.innerHTML = "";
     
     var length = 15;
     
     for(var i = 0; i < length; i++){
-        var newP = document.createElement("p");
-        newP.classList.add("fitPara");
+        var newDiv = document.createElement("p");
         var title = document.createTextNode("Title: " + response.records[i].fields.title);
         var object = document.createTextNode("Object: " + response.records[i].fields.object);
         var artist = document.createTextNode("Artist: " + response.records[i].fields.artist);
         var date = document.createTextNode("Date: " + response.records[i].fields.date_text);
-        newP.appendChild(title);
-        newP.appendChild(object);
-        newP.appendChild(artist);
-        newP.appendChild(date);
-        resultDiv.appendChild(newP);
+        
+        newDiv.appendChild(title);
+        newDiv.appendChild(document.createElement("br"));
+        newDiv.appendChild(object);
+        newDiv.appendChild(document.createElement("br"));
+        newDiv.appendChild(artist);
+        newDiv.appendChild(document.createElement("br"));
+        newDiv.appendChild(date);
+        resultsDiv.appendChild(newDiv);
+        // var currentDiv = document.getElementById("results")
+        // document.body.insertBefore(newDiv, currentDiv);
     }
-    */
+		
+}
+
+/*
+function show(json){
+    
+
     var i, obj;
     
 	for(i = 0; i < json.records.length; i++){
@@ -142,10 +112,11 @@ function show(json){
                     + img + ".jpg";
                     + img + "_jpg_ds.jpg";
         
-      //   var img = document.createElement("img");
-      //img.setAttribute("src", img_url);
-        
+    var img = document.createElement("img");
+         img.setAttribute("src", img_url);
+    
         console.log(img_url);
 	}
     
 }
+*/ 
